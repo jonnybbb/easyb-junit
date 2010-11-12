@@ -41,6 +41,7 @@ it 'should replay many events in order if many occurred', {
    def description1 = createSuiteDescription('anything1')
    def failure = mock(Failure.class)
    def description2 = createSuiteDescription('anything2')
+   def description3 = createSuiteDescription('anything3')
    notifierReplay.fireTestStarted(description1)
    notifierReplay.fireTestFailure(failure)
    notifierReplay.fireTestFinished(description1)
@@ -54,5 +55,5 @@ it 'should replay many events in order if many occurred', {
    inOrder.verify(notifier).fireTestFailure(failure)
    inOrder.verify(notifier).fireTestFinished(description1)
    inOrder.verify(notifier).fireTestStarted(description2)
-   inOrder.verify(notifier).fireTestFinished(description2)
+   inOrder.verify(notifier).fireTestFinished(description3)
 }

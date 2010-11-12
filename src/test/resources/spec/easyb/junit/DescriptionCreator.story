@@ -17,7 +17,7 @@ scenario "a description is created", {
    }
    
    then "the display should be the fully qualified class name", {
-      description.getDisplayName().shouldBe 'spec.easyb.junit.RunNotifierReplay2'
+      description.getDisplayName().shouldBe 'spec.easyb.junit.RunNotifierReplay'
    }
    
    and "the extension is taken off", {

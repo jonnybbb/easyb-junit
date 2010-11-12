@@ -2,8 +2,9 @@ package org.easyb.junit;
 
 import org.easyb.BehaviorRunner;
 import org.easyb.Configuration;
-import org.easyb.listener.ExecutionListener;
-import org.easyb.listener.ListenerBuilder;
+import org.easyb.domain.Behavior;
+import org.easyb.junit.report.JunitEasybReportsFactory;
+import org.easyb.listener.ListenerFactory;
 import org.easyb.report.HtmlReportWriter;
 import org.easyb.report.ReportWriter;
 import org.easyb.report.TxtSpecificationReportWriter;
@@ -25,6 +26,8 @@ public class EasybJUnitRunner extends CompositeRunner {
     private final EasybSuite suite;
     private final Configuration configuration;
     private JunitResult junitResult;
+    private List<Behavior> behaviors;
+    private JunitEasybReportsFactory reportsFactory;
 
 
     public EasybJUnitRunner(Class<? extends EasybSuite> testClass) throws Exception {
@@ -33,7 +36,8 @@ public class EasybJUnitRunner extends CompositeRunner {
         descriptionCreator = new DescriptionCreator(suite.baseDir());
         configuration = new Configuration(getFilePaths(), getReports(new File(".")));
 
-        //reportsFactory = new JunitEasybReportsFactory(new File("."));
+        behaviors = BehaviorRunner.getBehaviors(configuration.getFilePaths());
+        reportsFactory = new JunitEasybReportsFactory(new File("."));
     }
 
     private String[] getFilePaths() {
@@ -78,20 +82,14 @@ public class EasybJUnitRunner extends CompositeRunner {
     }
 
     public void run(final RunNotifier notifier) {
-        BehaviorRunner br = new BehaviorRunner(configuration, new ListenerBuilder() {
-            public ExecutionListener get() {
-                return new BehavoiurExecutionListener(notifier);
-            }
-        });
-        try {
-            notifier.fireTestRunStarted(description);
-
-            final boolean successful = br.runBehaviors(BehaviorRunner.getBehaviors(configuration.getFilePaths()));
 
 
-        } catch (Throwable e) {
-            // notifier.fireTestFailure(new Failure(getDescription(), e));
+        for (Behavior behavior : behaviors) {
+            add(new EasybBehaviorJunitRunner(getDescription(), behavior, reportsFactory));
+
         }
+        runChildren(notifier);
+        ListenerFactory.notifyTestingCompleted();
     }
 
     /*

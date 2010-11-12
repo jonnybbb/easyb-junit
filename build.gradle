@@ -13,7 +13,7 @@ repositories {
 }
 
 dependencies {
-  groovy 'org.codehaus.groovy:groovy-all:1.7.5'
+  groovy: 'org.codehaus.groovy:groovy-all:1.7.5@jar'
   compile "org.easyb:easyb:0.9.8"
   compile "junit:junit:4.4"
    compile "org.springframework:spring-test:3.0.4.RELEASE"

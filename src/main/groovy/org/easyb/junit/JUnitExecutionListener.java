@@ -128,7 +128,7 @@ public class JUnitExecutionListener extends ResultsCollector {
     private Description createStepDescription(BehaviorStep step) {
         final Description testDescription = Description.createTestDescription(step.getClass(), getStepDescriptionText(step));
         behaviorDescription.addChild(testDescription);
-        return behaviorDescription;
+        return behaviorDescription.getChildren().get(0);
     }
 
     /*

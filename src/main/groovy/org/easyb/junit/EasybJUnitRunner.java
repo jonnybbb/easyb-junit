@@ -17,8 +17,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.runner.Description.createSuiteDescription;
-
 public class EasybJUnitRunner extends CompositeRunner {
     private final RunNotifierReplay runNotifierReplay = new RunNotifierReplay();
     private final DescriptionCreator descriptionCreator;
@@ -35,7 +33,6 @@ public class EasybJUnitRunner extends CompositeRunner {
         suite = testClass.newInstance();
         descriptionCreator = new DescriptionCreator(suite.baseDir());
         configuration = new Configuration(getFilePaths(), getReports(new File(".")));
-
         behaviors = BehaviorRunner.getBehaviors(configuration.getFilePaths());
         reportsFactory = new JunitEasybReportsFactory(new File("."));
     }
@@ -74,18 +71,13 @@ public class EasybJUnitRunner extends CompositeRunner {
     }
 
 
-    public Description getDescription() {
-        if (description == null) {
-            description = createSuiteDescription(suite.description());
-        }
-        return description;
-    }
 
     public void run(final RunNotifier notifier) {
 
 
         for (Behavior behavior : behaviors) {
-            add(new EasybBehaviorJunitRunner(getDescription(), behavior, reportsFactory));
+            final Description behaviourDescription = descriptionCreator.create(behavior);
+            add(new EasybBehaviorJunitRunner(behavior, reportsFactory, behaviourDescription, descriptionCreator));
 
         }
         runChildren(notifier);

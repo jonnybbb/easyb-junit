@@ -1,5 +1,14 @@
 package org.easyb.junit;
 
+import static org.easyb.util.BehaviorStepType.*;
+import static org.easyb.util.BehaviorStepType.IT;
+import static org.easyb.util.BehaviorStepType.THEN;
+import static org.junit.runner.Description.createSuiteDescription;
+import static org.easyb.junit.RunProperties.isEclipse;
+
+import java.util.Arrays;
+import java.util.List;
+
 import org.easyb.BehaviorStep;
 import org.easyb.domain.Behavior;
 import org.easyb.listener.ExecutionListenerAdaptor;
@@ -8,13 +17,6 @@ import org.easyb.util.BehaviorStepType;
 import org.junit.runner.Description;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunNotifier;
-
-import java.util.Arrays;
-import java.util.List;
-
-import static org.easyb.junit.RunProperties.runsInsideIDE;
-import static org.easyb.util.BehaviorStepType.*;
-import static org.junit.runner.Description.createSuiteDescription;
 
 public class JUnitExecutionListener extends ExecutionListenerAdaptor {
    private static final List<BehaviorStepType> typesToTrack = Arrays.asList(SCENARIO, GIVEN, WHEN, THEN, AND, IT, BEFORE, AFTER);
@@ -86,7 +88,7 @@ public class JUnitExecutionListener extends ExecutionListenerAdaptor {
    }
 
    private void createStepDescription() {
-      if (behaviorStep.getStepType() == SCENARIO ) {
+      if (behaviorStep.getStepType() == SCENARIO && isEclipse()) {
          scenarioDescription = createSuiteDescription(getStepDescriptionText());
          behaviorDescription.addChild(scenarioDescription);
          currentDescription = scenarioDescription;
@@ -108,7 +110,7 @@ public class JUnitExecutionListener extends ExecutionListenerAdaptor {
     * fine, and using the counter will mess up the Ant output.
     */
    private String getBehaviorHiddenName() {
-      return runsInsideIDE() ? String.valueOf(counter++) : behaviorDescription.getDisplayName();
+      return isEclipse() ? String.valueOf(counter++) : behaviorDescription.getDisplayName();
    }
 
    private String getStepDescriptionText() {

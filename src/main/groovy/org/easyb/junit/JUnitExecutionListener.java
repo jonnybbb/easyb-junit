@@ -2,8 +2,6 @@ package org.easyb.junit;
 
 import org.easyb.BehaviorStep;
 import org.easyb.domain.Behavior;
-import org.easyb.junit.report.JunitEasybReportsFactory;
-import org.easyb.listener.ResultsAmalgamator;
 import org.easyb.listener.ResultsCollector;
 import org.easyb.result.Result;
 import org.easyb.util.BehaviorStepType;
@@ -25,16 +23,14 @@ public class JUnitExecutionListener extends ResultsCollector {
     private final Description behaviorDescription;
     private Description scenarioDescription;
     private final RunNotifier notifier;
-    private JunitEasybReportsFactory reportsFactory;
     private Stack<BehaviorStep> behaviorStep = new Stack<BehaviorStep>();
     private boolean stepRunning;
     private List<Behavior> behaviors = new ArrayList<Behavior>();
     private static int counter;
 
-    public JUnitExecutionListener(Description behaviorDescription, RunNotifier notifier, JunitEasybReportsFactory reportsFactory) {
+    public JUnitExecutionListener(Description behaviorDescription, RunNotifier notifier) {
         this.behaviorDescription = behaviorDescription;
         this.notifier = notifier;
-        this.reportsFactory = reportsFactory;
     }
 
     public void gotResult(Result result) {
@@ -67,12 +63,7 @@ public class JUnitExecutionListener extends ResultsCollector {
         notifier.fireTestStarted(createStepDescription(currentStep));
         stepRunning = true;
     }
-
-    @Override
-    public void completeTesting() {
-        super.completeTesting();
-        reportsFactory.produceReports(new ResultsAmalgamator(behaviors.toArray(new Behavior[behaviors.size()])));
-    }
+  
 
     private boolean shouldStart(BehaviorStep behaviorStep) {
         return typesToTrack.contains(behaviorStep.getStepType());

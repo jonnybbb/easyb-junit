@@ -6,9 +6,19 @@ import java.io.File;
 
 @RunWith(EasybJUnitRunner.class) 
 public abstract class EasybSuite {
-   protected File baseDir() {
+    private File reportsDir;
+
+    protected File baseDir() {
       return new File("spec");
    }
+
+    protected boolean generateReports(){
+       return false;
+    }
+
+    protected File reportsDir(){
+       return new File("reports");
+    }
 
    protected File searchDir() {
       String path = getClass().getName();

@@ -1,14 +1,5 @@
 package org.easyb.junit;
 
-import static org.easyb.util.BehaviorStepType.*;
-import static org.easyb.util.BehaviorStepType.IT;
-import static org.easyb.util.BehaviorStepType.THEN;
-import static org.junit.runner.Description.createSuiteDescription;
-import static org.easyb.junit.RunProperties.isEclipse;
-
-import java.util.Arrays;
-import java.util.List;
-
 import org.easyb.BehaviorStep;
 import org.easyb.domain.Behavior;
 import org.easyb.listener.ExecutionListenerAdaptor;
@@ -17,6 +8,13 @@ import org.easyb.util.BehaviorStepType;
 import org.junit.runner.Description;
 import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunNotifier;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static org.easyb.junit.RunProperties.isEclipse;
+import static org.easyb.util.BehaviorStepType.*;
+import static org.junit.runner.Description.createSuiteDescription;
 
 public class JUnitExecutionListener extends ExecutionListenerAdaptor {
    private static final List<BehaviorStepType> typesToTrack = Arrays.asList(SCENARIO, GIVEN, WHEN, THEN, AND, IT, BEFORE, AFTER);
@@ -40,7 +38,9 @@ public class JUnitExecutionListener extends ExecutionListenerAdaptor {
    private void testForFailure(Result result) {
       if (result.failed()) {
          notifier.fireTestFailure(new Failure(currentDescription, result.cause));
-         System.out.print(" -> Failed: " + result.cause.getMessage());
+          final Throwable cause = result.cause;
+          String msg = cause == null? "unknown cause" : cause.getMessage();
+          System.out.print(" -> Failed: " + msg);
       }
    }
 

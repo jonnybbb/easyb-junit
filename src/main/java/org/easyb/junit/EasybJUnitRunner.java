@@ -36,7 +36,7 @@ public class EasybJUnitRunner extends Runner {
         suite = testClass.newInstance();
         descriptionCreator = new DescriptionCreator(suite.baseDir());
         listenerRegistry = new JunitExecutionListenerRegistry();
-        configuration = new Configuration(getFilePaths(), getReports(new File("reports")));
+        configuration = new Configuration(getFilePaths(), getReports(suite));
         ListenerFactory.registerBuilder(new ListenerBuilder() {
             public ExecutionListener get() {
                 return listenerRegistry;
@@ -110,7 +110,12 @@ public class EasybJUnitRunner extends Runner {
         return file.getName().endsWith(".story") || file.getName().endsWith(".specification");
     }
 
-    private List<ReportWriter> getReports(File reportsDir) {
+    private List<ReportWriter> getReports(EasybSuite suite) {
+        if(!suite.generateReports()){
+            return new ArrayList<ReportWriter>();
+        }
+        String reportsDir = suite.reportsDir().getPath();
+
         File html = new File(reportsDir, "html");
         html.mkdirs();
         File plain = new File(reportsDir, "plain");

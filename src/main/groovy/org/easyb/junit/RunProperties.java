@@ -3,7 +3,7 @@ package org.easyb.junit;
 public class RunProperties {
    private static Boolean isEclipse;
    
-   public static boolean isIde() {
+   public static boolean runsInsideIDE() {
       if (isEclipse == null) {
          isEclipse = false;
          for (StackTraceElement element : new Exception().getStackTrace()) {

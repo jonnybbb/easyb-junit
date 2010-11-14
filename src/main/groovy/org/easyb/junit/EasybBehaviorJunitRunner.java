@@ -10,25 +10,25 @@ import java.io.IOException;
 
 
 public class EasybBehaviorJunitRunner extends Runner {
-    private Description description;
+    private Description behaviorDescription;
     private Behavior behavior;
     private final JunitExecutionListenerRegistry listenerRegistry;
 
-    public EasybBehaviorJunitRunner(Behavior behavior, JunitExecutionListenerRegistry registry) {
+    public EasybBehaviorJunitRunner(Behavior behavior, JunitExecutionListenerRegistry registry, Description behaviorDescription) {
         listenerRegistry = registry;
-        this.description =  Description.createTestDescription(behavior.getClass(),behavior.getPhrase());
+        this.behaviorDescription = behaviorDescription;
         this.behavior = behavior;
     }
 
 
     @Override
     public Description getDescription() {
-        return description;
+        return behaviorDescription;
     }
 
     @Override
     public void run(RunNotifier notifier) {
-        ExecutionListener junitLister = new JUnitExecutionListener(description, notifier);
+        ExecutionListener junitLister = new JUnitExecutionListener(behaviorDescription, notifier);
         listenerRegistry.registerListener(junitLister);
 
         try {

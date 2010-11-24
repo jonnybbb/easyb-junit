@@ -1,0 +1,9 @@
+4 specifications executed successfully.
+
+  Specification: run notifier replay
+
+    before init notifier
+    it should replay no events if none occurred
+    it should replay one event if only one occurred
+    it should replay one event if only one occurred
+    it should replay many events in order if many occurred

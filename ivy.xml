@@ -1,0 +1,16 @@
+<ivy-module version="2.0">
+    <info organisation="easyb-junit" module="easyb-junit"/>
+    <configurations defaultconfmapping="build->default;compile->compile(*),master(*);test,runtime->runtime(*),master(*)">
+        <conf name="build"/>
+        <conf name="compile"/>
+        <conf name="test" extends="compile"/>
+        <conf name="runtime" extends="compile"/>
+    </configurations>
+    <dependencies>
+        <dependency org="org.easyb" name="easyb" rev="0.9.8"/>
+        <dependency org="junit" name="junit" rev="4.4"/>
+        
+        <!-- test dependencies -->
+        <dependency org="org.mockito" name="mockito-all" rev="1.8.5" conf="test" />
+    </dependencies>
+</ivy-module>

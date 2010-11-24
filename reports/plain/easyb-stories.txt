@@ -1,0 +1,16 @@
+2 scenarios executed, but status is failure! Total failures: 1 (0 behaviors were ignored)
+
+  Story: description creator
+
+
+    scenario a description is created
+      given a description creator with root directory of spec and a behavior underneath
+      when create is called
+      then the display should be the fully qualified class name [FAILURE: expected spec.easyb.junit.RunNotifierReplay2 but was spec.easyb.junit.RunNotifierReplay]
+      then the extension is taken off
+
+    scenario a description is created duplicate
+      given a description creator with root directory of spec and a behavior underneath
+      when create is called
+      then the display should be the fully qualified class name
+      then the extension is taken off

@@ -1,0 +1,403 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='en' lang='en'>
+<head>
+  <meta http-equiv='content-type' content='text/html; charset=utf-8'/>
+  <title>easyb-report</title>
+  <meta name='keywords' content='BDD, behavior driven development, java, java bdd, groovy, groovy bdd, groovy behavior driven development, java behavior driven development, ruby, rspec, easyb, easy bdd'/>
+  <meta name='description' content='easyb is story verification framework built in the spirit of behavior driven development.'/>
+  <link href='easyb_report.css' rel='stylesheet' type='text/css'/>
+  <script src='prototype.js' type='text/javascript'></script>
+  <script type='text/javascript'>
+    function showOnlyContent(contentDiv, linkId) {
+      $('Summaries').hide();
+      $('summary-menu-link').removeClassName('selected-menu-link');
+    
+      $('SpecificationsList').hide();
+      $('SpecificationsListPlain').hide();
+      $('specifications-list-menu-link').removeClassName('selected-menu-link');
+      $('specifications-list-plain-menu-link').removeClassName('selected-menu-link');
+    
+    
+      $('StoriesList').hide();
+      $('StoriesListPlain').hide();
+      $('stories-list-menu-link').removeClassName('selected-menu-link');
+      $('stories-list-plain-menu-link').removeClassName('selected-menu-link');
+    
+      $(linkId).addClassName('selected-menu-link');
+      $(contentDiv).show();
+    }
+    function toggleScenariosForStory(storyNumber) {
+      $('scenarios_for_story_' + storyNumber).toggle();
+      return false;
+    }
+    function toggleComponentsForSpecification(specificationNumber) {
+      $('components_for_specification_' + specificationNumber).toggle();
+      return false;
+    }
+  </script>
+</head>
+<body>
+<!-- start header -->
+<div id='header'>
+  <h1>
+    <a href='http://www.easyb.org'>
+      <span>easyb</span>
+    </a>
+  </h1>
+  <h2>&nbsp;&nbsp; -- BDD in java can't get any easier</h2>
+</div>
+<!-- end header -->
+
+
+<!-- start page -->
+<div id='page'>
+  <!-- start content -->
+  <div id='content'>
+    <div class='post'>
+      <div class='entry'>
+        <div id='Summaries'>
+          <h2>Summary</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Behaviors</th>
+                <th>Failed</th>
+                <th>Pending</th>
+                <th>Time (sec)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='primaryRow'>
+                <td>6</td>
+                <td class='stepResultFailed'>1</td>
+                <td class=''>0</td>
+                <td>1.513</td>
+              </tr>
+            </tbody>
+          </table>
+          <h2>Stories Summary</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Stories</th>
+                <th>Scenarios</th>
+                <th>Failed</th>
+                <th>Pending</th>
+                <th>Time (sec)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='primaryRow'>
+                <td>1</td>
+                <td>2</td>
+                <td class='stepResultFailed'>1</td>
+                <td class=''>0</td>
+                <td>1.147</td>
+              </tr>
+            </tbody>
+          </table>
+          <h2>Specifications Summary</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Specifications</th>
+                <th>Failed</th>
+                <th>Pending</th>
+                <th>Time (sec)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class='primaryRow'>
+                <td>1</td>
+                <td class=''>0</td>
+                <td class=''>0</td>
+                <td>0.366</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+
+<div id='SpecificationsList' style='display:none;'>
+  <h2>Specifications List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Specifications</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Time (sec)</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr class='primaryRow'>
+        <td>
+          
+            <a href="#" onclick="$('components_for_specification_' + 0).toggle(); return false;">run notifier replay</a>
+          
+        </td>
+        <td>4</td>
+        <td class="">0</td>
+        <td class="">0</td>
+        <td>0.366</td>
+      </tr>
+
+      
+      <tr id='components_for_specification_0' class='componentsForSpecification' style='display:none;'>
+        <td colspan='5'>
+          <table class='componentsForSpecificationTable'>
+            <tbody>
+             
+              <tr>
+                <td>before init notifier</td>
+                <td class='' style='text-align:right;'></td>
+              </tr>
+              
+             
+              <tr>
+                <td>it should replay no events if none occurred</td>
+                <td class='stepResultSuccess' style='text-align:right;'>success</td>
+              </tr>
+              
+             
+              <tr>
+                <td>it should replay one event if only one occurred</td>
+                <td class='stepResultSuccess' style='text-align:right;'>success</td>
+              </tr>
+              
+             
+              <tr>
+                <td>it should replay one event if only one occurred</td>
+                <td class='stepResultSuccess' style='text-align:right;'>success</td>
+              </tr>
+              
+             
+              <tr>
+                <td>it should replay many events in order if many occurred</td>
+                <td class='stepResultSuccess' style='text-align:right;'>success</td>
+              </tr>
+              
+             
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      
+      
+    </tbody>
+  </table>
+</div>
+
+
+
+<div id='SpecificationsListPlain' style='display:none;'>
+  <h2>Specifications Text</h2>
+  
+  <div>4 specifications executed successfully.</div>
+  <div><br/><br/>&nbsp;&nbsp;Specification: run notifier replay<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;before init notifier<br/>&nbsp;&nbsp;&nbsp;&nbsp;it should replay no events if none occurred<br/>&nbsp;&nbsp;&nbsp;&nbsp;it should replay one event if only one occurred<br/>&nbsp;&nbsp;&nbsp;&nbsp;it should replay one event if only one occurred<br/>&nbsp;&nbsp;&nbsp;&nbsp;it should replay many events in order if many occurred</div>
+</div>
+
+        
+<div id='StoriesList' style='display:none;'>
+  <h2>Stories List</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Story</th>
+        <th>Scenarios</th>
+        <th>Failed</th>
+        <th>Pending</th>
+        <th>Time (sec)</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr class='primaryRow'>
+        <td>
+         
+          <a href="#" onclick="$('scenarios_for_story_' + 0).toggle(); return false;">description creator</a>
+         
+        </td>
+        <td>2</td>
+        <td class='stepResultFailed'>1</td>
+        <td class=''>0</td>
+        <td>1.147</td>
+      </tr>
+
+       
+      <tr id='scenarios_for_story_0' class='scenariosForStory' style='display:none;'>
+        <td colspan='5'>
+          <table class='scenariosForStoriesTable'>
+            <tbody>
+              
+              <tr class='primaryScenarioRow'>
+                <td title='Scenario'>a description is created</td>
+                <td title='Result' class='stepResultFailed'>failure</td>
+                <td title='Time (sec)'>0.435</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given a description creator with root directory of spec and a behavior underneath</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when create is called</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then the display should be the fully qualified class name</td>
+                <td class='stepResultFailed'>failure</td>
+                <td />
+              </tr>
+              
+              <tr>
+                <td colspan='3' style='color:red; padding-left: 1cm;'>
+                  
+                    <b>null</b><br/>  
+                  
+                  <strong>org.easyb.exception.VerificationException: expected spec.easyb.junit.RunNotifierReplay2 but was spec.easyb.junit.RunNotifierReplay</strong>
+                  
+                  <br />sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:39)
+                  
+                  <br />sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:27)
+                  
+                  <br />java.lang.reflect.Constructor.newInstance(Constructor.java:513)
+                  
+                  <br />org.codehaus.groovy.reflection.CachedConstructor.invoke(CachedConstructor.java:77)
+                  
+                  <br />org.codehaus.groovy.reflection.CachedConstructor.doConstructorInvoke(CachedConstructor.java:71)
+                  
+                  <br />org.codehaus.groovy.runtime.callsite.ConstructorSite$ConstructorSiteNoUnwrap.callConstructor(ConstructorSite.java:81)
+                  
+                  <br />org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCallConstructor(CallSiteArray.java:52)
+                  
+                  <br />org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:190)
+                  
+                  <br />org.codehaus.groovy.runtime.callsite.AbstractCallSite.callConstructor(AbstractCallSite.java:198)
+                  
+                  <br />org.easyb.BehaviorCategory.throwValidationException(BehaviorCategory.groovy:11)
+                  
+                  <br />
+                </td>
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then the extension is taken off</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+              <tr class='secondaryScenarioRow'>
+                <td title='Scenario'>a description is created duplicate</td>
+                <td title='Result' class='stepResultSuccess'>success</td>
+                <td title='Time (sec)'>0.027</td>
+              </tr>
+              
+              <tr class='scenarioComponents'>
+                <td>given a description creator with root directory of spec and a behavior underneath</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>when create is called</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then the display should be the fully qualified class name</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              <tr class='scenarioComponents'>
+                <td>then the extension is taken off</td>
+                <td class='stepResultSuccess'>success</td>
+                <td />
+              </tr>
+              
+              
+              
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      
+      
+    </tbody>
+  </table>
+</div>
+
+
+
+
+<div id='StoriesListPlain' style='display:none;'>
+  <h2>Stories Text</h2>
+  
+  <div>2 scenarios executed, but status is failure! Total failures: 1</div>
+  <div><br/><br/>&nbsp;&nbsp;Story: description creator<br/><br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario a description is created<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given a description creator with root directory of spec and a behavior underneath<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when create is called<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then the display should be the fully qualified class name&nbsp;<span style='color:#FF8080;'>[FAILURE: expected spec.easyb.junit.RunNotifierReplay2 but was spec.easyb.junit.RunNotifierReplay]</span><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then the extension is taken off<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;scenario a description is created duplicate<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;given a description creator with root directory of spec and a behavior underneath<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;when create is called<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then the display should be the fully qualified class name<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then the extension is taken off</div>
+</div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- end content -->
+
+
+  <!-- start sidebar -->
+  <div id='sidebar'>
+    <ul>
+      <li>
+        <h2>Sections</h2>
+        <ul>
+          <li>
+            <a id='summary-menu-link' class='selected-menu-link' href='#' onclick='showOnlyContent("Summaries", "summary-menu-link")'>Summary</a>
+          </li>
+          
+          <li>
+            <a id='stories-list-menu-link' href='#' onclick='showOnlyContent("StoriesList", "stories-list-menu-link")'>Stories</a>
+          </li>
+          <li>
+            <a id='stories-list-plain-menu-link' href='#' onclick='showOnlyContent("StoriesListPlain", "stories-list-plain-menu-link")'>Stories Text</a>
+          </li>
+          
+          
+          <li>
+            <a id='specifications-list-menu-link' href='#' onclick='showOnlyContent("SpecificationsList", "specifications-list-menu-link")'>Specifications</a>
+          </li>
+          <li>
+            <a id='specifications-list-plain-menu-link' href='#' onclick='showOnlyContent("SpecificationsListPlain", "specifications-list-plain-menu-link")'>Specifications Text</a>
+          </li>
+          
+        </ul>
+      </li>
+    </ul>
+    <div style='clear: both;'>&nbsp;</div>
+  </div>
+  <!-- end sidebar -->
+
+</div>
+<!-- end page -->
+
+<div id='footer'/>
+</body>
+</html>

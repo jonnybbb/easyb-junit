@@ -1,4 +1,8 @@
 build/
 lib/
+out/
+.gradle/
+.hg/
 *.iml
 *.ipr
+*.iws

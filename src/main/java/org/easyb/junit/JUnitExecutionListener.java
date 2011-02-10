@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.easyb.junit.RunProperties.isEclipse;
+import static org.easyb.junit.RunProperties.isIDEA;
 import static org.easyb.util.BehaviorStepType.*;
 import static org.junit.runner.Description.createSuiteDescription;
 
@@ -88,7 +89,7 @@ public class JUnitExecutionListener extends ExecutionListenerAdaptor {
    }
 
    private void createStepDescription() {
-      if (behaviorStep.getStepType() == SCENARIO && isEclipse()) {
+      if (behaviorStep.getStepType() == SCENARIO && (isEclipse() || isIDEA()) ) {
          scenarioDescription = createSuiteDescription(getStepDescriptionText());
          behaviorDescription.addChild(scenarioDescription);
          currentDescription = scenarioDescription;

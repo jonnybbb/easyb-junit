@@ -21,10 +21,11 @@ import java.util.List;
 
 import static org.easyb.BehaviorRunner.getBehaviors;
 import static org.easyb.junit.RunProperties.isEclipse;
+import static org.easyb.junit.RunProperties.isIDEA;
 import static org.junit.runner.Description.createSuiteDescription;
 
 public class EasybJUnitRunner extends Runner {
-    private final RunNotifierReplay runNotifierReplay = new RunNotifierReplay();
+    private final RunNotifierReplay runNotifierReplay = new RunNotifierReplay();                  //needed for timing?
     private final DescriptionCreator descriptionCreator;
     private Description description;
     private List<Behavior> behaviors;
@@ -42,13 +43,12 @@ public class EasybJUnitRunner extends Runner {
                 return listenerRegistry;
             }
         });
-
     }
 
     public Description getDescription() {
         if (description == null) {
             description = createSuiteDescription(suite.description());
-            if (isEclipse())
+            if (isEclipse() || isIDEA() )
                 executeBehaviors(runNotifierReplay);
         }
         return description;
@@ -80,7 +80,7 @@ public class EasybJUnitRunner extends Runner {
     }
 
     public void run(RunNotifier notifier) {
-        if (isEclipse())
+        if (isEclipse() || isIDEA())
             runNotifierReplay.replay(notifier, suite.trackTime());
         else
             executeBehaviors(notifier);
@@ -97,12 +97,18 @@ public class EasybJUnitRunner extends Runner {
     }
 
     private void listFiles(File dir, List<String> files) {
-        for (File file : dir.listFiles()) {
-            if (file.isDirectory()) {
-                listFiles(file, files);
-            } else if (isBehavior(file)) {
-                files.add(file.getAbsolutePath());
+        //check whether this is a valid directory at all
+        File[] filesInDirectory = dir.listFiles();
+        if (filesInDirectory != null) {
+            for (File file : filesInDirectory) {
+                if (file.isDirectory()) {
+                    listFiles(file, files);
+                } else if (isBehavior(file)) {
+                    files.add(file.getAbsolutePath());
+                }
             }
+        } else {
+            System.err.println("Could not find any behaviour/story files in " + dir + ", maybe IDE prefix (working dir) is wrong?");
         }
     }
 
